@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class SceneLoadManager : MonoBehaviour
 {
 
+    //This script needs to be put on an Empty GameObject.
+
     public GameObject LoadingScreen;
     public Slider slider;
     public Text ProgressText;
@@ -30,9 +32,10 @@ public class SceneLoadManager : MonoBehaviour
 
         LoadingScreen.SetActive(true);
 
+        //Unity progress goes from 0.0 to 0.9(for loading) and from 0.9 to 1.0(for actavating the assets) 
         while (!operation.isDone)
         {
-            float progress = Mathf.Clamp01(operation.progress / .9f);
+            float progress = Mathf.Clamp01(operation.progress / .9f); //This makes it so that the loading from 0.0 to 0.9 are shwon on a bar as 0.0 to 1.0
 
             slider.value = progress;
             ProgressText.text = progress * 100f + "%";
